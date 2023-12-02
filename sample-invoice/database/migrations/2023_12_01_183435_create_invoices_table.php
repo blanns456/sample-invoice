@@ -17,7 +17,7 @@ return new class extends Migration
             $table->dateTime("date_created");
             $table->dateTime("date_from");
             $table->dateTime("date_to");
-            $table->dateTime("restaurant_id");
+            $table->integer("restaurant_id");
         });
     }
 

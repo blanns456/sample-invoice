@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class InvoiceController extends Controller
 {
@@ -38,6 +40,13 @@ class InvoiceController extends Controller
             return back()->withErrors($validate->errors())->withInput();
         }
 
+        $invoice = new Invoices();
+        $invoice->date_from = $request->input('startDate');
+        $invoice->date_to = $request->input('endDate');
+        $invoice->date_created = Carbon::now();
+        $invoice->restaurant_id = 1;
+
+        $invoice->save();
         return back();
     }
 
