@@ -15,19 +15,31 @@
 @section('content')
     <div class="container-xl">
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-6">
+            <div class="col-md-4">
 
             </div>
-            <div class="col-md-6 weeklycontainer">
+            <div class="col-md-8 weeklycontainer">
                 <h1 class="text-center pb-4">Weekly Range Picker</h1>
+                <form class="custom-validation" method="post" action="{{ route('invoices.store') }}">
+                    @csrf
                 <div class="row justify-content-center">
-                        <input type="date" id="startDate" name="startDate" class="col-md-4">
+                        <div class="col-md-4">
+                            <input type="date" id="startDate" name="startDate">
+                                @error('startDate')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                        </div>
                         <p class="col-md-4 text-center">&nbsp;to&nbsp;</p>
-                        <input type="date" id="endDate" name="endDate" class="col-md-4">
-                        <button onclick="getSelectedRange()" class="btn btn-primary col-md-4 mt-md-4 mt-5">Get Selected Range</button>
-
-                </div>
-                <p id="selectedRangeText"></p>
+                        <div class="col-md-4">
+                            <input type="date" id="endDate" name="endDate">
+                                 @error('endDate')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                        </div>
+                        <button type="submit" class="btn btn-primary col-md-4 mt-md-4 mt-5">Generate Invoice</button>
+                    </div>
+                </form>
+                {{-- <p id="selectedRangeText"></p> --}}
             </div>
         </div>
     </div>

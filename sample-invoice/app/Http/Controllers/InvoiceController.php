@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class InvoiceController extends Controller
 {
@@ -28,6 +29,16 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         //
+        $validate = Validator::make($request->all(), [
+            'startDate' => 'required ',
+            'endDate' => 'required',
+        ]);
+
+        if ($validate->fails()) {
+            return back()->withErrors($validate->errors())->withInput();
+        }
+
+        return back();
     }
 
     /**
