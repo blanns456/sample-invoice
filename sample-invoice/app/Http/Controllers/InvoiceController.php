@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoices;
+use App\Models\Restaurants;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class InvoiceController extends Controller
 {
@@ -14,7 +17,13 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        return view("invoices");
+        $invoices = DB::table('invoices')
+            ->select('id', DB::raw("concat(DATE_FORMAT(date_from, '%Y-%m-%d'), ' - ', DATE_FORMAT(date_to, '%Y-%m-%d'))AS formatted_date_created"))
+            ->groupBy("date_from")
+            ->orderByDesc("date_from")
+            ->get();
+
+        return view("invoices", ["invoices" => $invoices]);
     }
 
     /**
@@ -39,14 +48,19 @@ class InvoiceController extends Controller
         if ($validate->fails()) {
             return back()->withErrors($validate->errors())->withInput();
         }
+        $restaurants = DB::table('restaurants')
+            ->select('id')
+            ->get();
 
-        $invoice = new Invoices();
-        $invoice->date_from = $request->input('startDate');
-        $invoice->date_to = $request->input('endDate');
-        $invoice->date_created = Carbon::now();
-        $invoice->restaurant_id = 1;
 
-        $invoice->save();
+        foreach ($restaurants as $restaurant) {
+            $invoice = new Invoices();
+            $invoice->date_from = $request->input('startDate');
+            $invoice->date_to = $request->input('endDate');
+            $invoice->date_created = Carbon::now();
+            $invoice->restaurant_id = $restaurant->id;
+            $invoice->save();
+        }
         return back();
     }
 

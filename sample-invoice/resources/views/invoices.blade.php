@@ -16,7 +16,13 @@
     <div class="container-xl">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-4">
-
+                @foreach ($invoices as $invoice)
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title">{{$invoice->formatted_date_created}}</h4>
+                        </div>
+                    </div>
+                @endforeach
             </div>
             <div class="col-md-8 weeklycontainer">
                 <h1 class="text-center pb-4">Weekly Range Picker</h1>
