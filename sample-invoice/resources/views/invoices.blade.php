@@ -19,7 +19,7 @@
                 @foreach ($invoices as $invoice)
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h4 class="card-title">{{$invoice->formatted_date_created}}</h4>
+                            <h4 class="card-title"><a href="">{{$invoice->formatted_date_created}}</a></h4>
                         </div>
                     </div>
                 @endforeach
