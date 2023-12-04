@@ -18,7 +18,7 @@ class InvoiceController extends Controller
     public function index()
     {
         $invoices = DB::table('invoices')
-            ->select('id', DB::raw("concat(DATE_FORMAT(date_from, '%Y-%m-%d'), ' - ', DATE_FORMAT(date_to, '%Y-%m-%d'))AS formatted_date_created"))
+            ->select('id', 'date_from', 'date_to', DB::raw("concat(DATE_FORMAT(date_from, '%Y-%m-%d'), ' - ', DATE_FORMAT(date_to, '%Y-%m-%d'))AS formatted_date_created"))
             ->groupBy("date_from")
             ->orderByDesc("date_from")
             ->get();
@@ -94,5 +94,18 @@ class InvoiceController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+    public function invoices($date_from, $date_to)
+    {
+        $date_from = explode(" ", $date_from);
+        $date_from = $date_from[0];
+        $date_to = explode(" ", $date_to);
+        $date_to = $date_to[0];
+        // dd([$date_from, $date_to]);
+        $restaurants = DB::select("SELECT restaurants.id, restaurants.name as resname FROM `invoices` join restaurants on restaurants.id = invoices.restaurant_id WHERE invoices.date_from = '$date_from' and date_to = '$date_to'");
+        // dd($restaurant);
+        return view("restaurantlist", ["restaurants" => $restaurants]);
     }
 }

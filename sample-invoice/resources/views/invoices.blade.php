@@ -19,7 +19,7 @@
                 @foreach ($invoices as $invoice)
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h4 class="card-title"><a href="">{{$invoice->formatted_date_created}}</a></h4>
+                            <h4 class="card-title"><a href="{{ route('getinvoices.invoices', ['date_from'=>$invoice->date_from, 'date_to'=>$invoice->date_to]) }}">{{$invoice->formatted_date_created}}</a></h4>
                         </div>
                     </div>
                 @endforeach
