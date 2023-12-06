@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [InvoiceController::class, 'index']);
 Route::resource('invoices', InvoiceController::class);
-$router->get('/invoice/{date_from}/{date_to}', [
+Route::get('/invoice/{date_from}/{date_to}', [
     InvoiceController::class, 'invoices'
 ])->name('getinvoices.invoices');
+
+Route::get('/generateinvoice/{resid}/{date_from}/{date_to}', [
+    InvoiceController::class, 'generateinvoices'
+])->name('invoices.generateinvoice');

@@ -104,8 +104,32 @@ class InvoiceController extends Controller
         $date_to = explode(" ", $date_to);
         $date_to = $date_to[0];
         // dd([$date_from, $date_to]);
-        $restaurants = DB::select("SELECT restaurants.id, restaurants.name as resname FROM `invoices` join restaurants on restaurants.id = invoices.restaurant_id WHERE invoices.date_from = '$date_from' and date_to = '$date_to'");
+        $restaurants = DB::select("SELECT restaurants.id, restaurants.name as resname , invoices.date_from as date_from , invoices.date_to as date_to FROM `invoices` join restaurants on restaurants.id = invoices.restaurant_id WHERE invoices.date_from = '$date_from' and date_to = '$date_to'");
         // dd($restaurant);
         return view("restaurantlist", ["restaurants" => $restaurants]);
+    }
+
+    public function generateinvoices($resid, $date_from,  $date_to)
+    {
+        $restaurantinformation = DB::select("SELECT * FROM `restaurants` where id = '$resid'");
+        $orders = array();
+        $getorders = DB::select("SELECT * FROM `orders` where restaurant_id = '$resid'");
+        foreach ($getorders as $order) {
+            $carts = json_decode($order->cart);
+            foreach ($carts as $cart) {
+
+                $object = ["resname" => $cart->name, "qty" => $cart->qty, "totalprice" => $cart->totalprice];
+                array_push($orders, $object);
+                // array_push($orders, $cart);
+            }
+        }
+
+        // dd($orders);
+
+        // dd($orders, array_search('1-pc Chicken w/ Fries Small Meal', $orders));
+        // dd(array_search('1-pc Chicken w/ Fries Small Meal', $orders));
+
+        $date_range = explode(" ", $date_from)[0] . " - " . explode(" ", $date_to)[0];
+        return view("generateinvoice", ["restoinfos" => $restaurantinformation, "daterange" => $date_range, 'orders' => $orders],);
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2023 at 07:20 AM
+-- Generation Time: Dec 06, 2023 at 01:53 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -103,8 +103,21 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `restaurant_id` int(11) NOT NULL,
   `date_created` datetime NOT NULL,
-  `grandtotal` int(11) NOT NULL
+  `cart` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `created_at`, `updated_at`, `restaurant_id`, `date_created`, `cart`) VALUES
+(1, NULL, NULL, 1, '2023-05-04 21:02:50', '[{\"id\":\"kIkWcJqMowWYvbqwcgLF\",\"name\":\"nashburn\",\"description\":\"\",\"base_price\":195.0,\"totalprice\":585.0,\"image\":\"https://firebasestorage.googleapis.com/v0/b/foodtrip-app-a98ea.appspot.com/o/menu%2F1677596929518?alt=media&token=1ad9b0d7-5745-4039-a0bb-15884cfa5006\",\"restaurant\":\"DKAMxvs737vtmzwptVV6\",\"qty\":3,\"options\":[]}]'),
+(2, NULL, NULL, 1, '2023-12-05 21:10:21', '[{\"id\":\"kIkWcJqMowWYvbqwcgLF\",\"name\":\"nashburn\",\"description\":\"\",\"base_price\":195.0,\"totalprice\":585.0,\"image\":\"https://firebasestorage.googleapis.com/v0/b/foodtrip-app-a98ea.appspot.com/o/menu%2F1677596929518?alt=media&token=1ad9b0d7-5745-4039-a0bb-15884cfa5006\",\"restaurant\":\"DKAMxvs737vtmzwptVV6\",\"qty\":3,\"options\":[]}]'),
+(3, NULL, NULL, 2, '2023-06-27 08:23:31', '[{\"id\":\"fX8hEBpAefwakWlKos7H\",\"name\":\"Cheese Burger\",\"description\":\"\",\"base_price\":50.0,\"totalprice\":50.0,\"image\":\"https://firebasestorage.googleapis.com/v0/b/foodtrip-app-a98ea.appspot.com/o/menu%2F1676882566070?alt=media&token=acea30df-074c-41b1-af90-086e1c7c77e9\",\"restaurant\":\"drgEiw8zpb0PoArGtbYi\",\"qty\":1,\"options\":[]}]'),
+(4, NULL, NULL, 1, '2023-04-15 22:06:35', '[{\"id\":\"kIkWcJqMowWYvbqwcgLF\",\"name\":\"nashburn\",\"description\":\"\",\"base_price\":195.0,\"totalprice\":195.0,\"image\":\"https://firebasestorage.googleapis.com/v0/b/foodtrip-app-a98ea.appspot.com/o/menu%2F1677596929518?alt=media&token=1ad9b0d7-5745-4039-a0bb-15884cfa5006\",\"restaurant\":\"DKAMxvs737vtmzwptVV6\",\"qty\":1,\"options\":[]}]'),
+(5, NULL, NULL, 2, '2023-05-31 18:55:02', '[{\"id\":\"vwVkU4Oji6OSCCP8mArz\",\"name\":\"1-pc Chicken w/ Fries Small Meal\",\"description\":\"\",\"base_price\":120.0,\"totalprice\":135.0,\"image\":\"https://firebasestorage.googleapis.com/v0/b/foodtrip-app-a98ea.appspot.com/o/menu%2F1673776069136?alt=media&token=8f3ab2c2-1019-4ccf-80ae-9f7d069bb696\",\"restaurant\":\"drgEiw8zpb0PoArGtbYi\",\"qty\":1,\"options\":[{\"index\":\"0\",\"text\":\"Side 1\",\"price\":\"0.00\"},{\"index\":\"1\",\"text\":\"Flavor Variant 2\",\"price\":\"15.00\"},[{\"index\":0,\"text\":\"\",\"price\":0,\"value\":false},{\"index\":1,\"text\":\"\",\"price\":0,\"value\":false}]]}]'),
+(6, NULL, NULL, 1, '2023-06-27 08:03:59', '[{\"id\":\"kIkWcJqMowWYvbqwcgLF\",\"name\":\"nashburn\",\"description\":\"\",\"base_price\":195.0,\"totalprice\":195.0,\"image\":\"https://firebasestorage.googleapis.com/v0/b/foodtrip-app-a98ea.appspot.com/o/menu%2F1677596929518?alt=media&token=1ad9b0d7-5745-4039-a0bb-15884cfa5006\",\"restaurant\":\"DKAMxvs737vtmzwptVV6\",\"qty\":1,\"options\":[]}]'),
+(7, NULL, NULL, 1, '2023-06-27 08:03:59', '[{\"id\":\"kIkWcJqMowWYvbqwcgLF\",\"name\":\"nashburn\",\"description\":\"\",\"base_price\":195.0,\"totalprice\":195.0,\"image\":\"https://firebasestorage.googleapis.com/v0/b/foodtrip-app-a98ea.appspot.com/o/menu%2F1677596929518?alt=media&token=1ad9b0d7-5745-4039-a0bb-15884cfa5006\",\"restaurant\":\"DKAMxvs737vtmzwptVV6\",\"qty\":1,\"options\":[]}]');
 
 -- --------------------------------------------------------
 
@@ -261,7 +274,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
