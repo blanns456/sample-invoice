@@ -118,7 +118,7 @@ class InvoiceController extends Controller
             $carts = json_decode($order->cart);
             foreach ($carts as $cart) {
 
-                $object = ["resname" => $cart->name, "qty" => $cart->qty, "totalprice" => $cart->totalprice];
+                $object = ["resname" => $cart->name, "qty" => $cart->qty, " " => $cart->totalprice];
                 array_push($orders, $object);
                 // array_push($orders, $cart);
             }
