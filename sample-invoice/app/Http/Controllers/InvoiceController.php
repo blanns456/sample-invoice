@@ -112,17 +112,9 @@ class InvoiceController extends Controller
     public function generateinvoices($resid, $date_from,  $date_to)
     {
         $restaurantinformation = DB::select("SELECT * FROM `restaurants` where id = '$resid'");
-        $orders = array();
-        $getorders = DB::select("SELECT * FROM `orders` where restaurant_id = '$resid'");
-        foreach ($getorders as $order) {
-            $carts = json_decode($order->cart);
-            foreach ($carts as $cart) {
+        // $orders = array();
+        $getorders = DB::select("SELECT count(*) as countorder FROM `orders` where restaurant_id = '$resid'");
 
-                $object = ["resname" => $cart->name, "qty" => $cart->qty, " " => $cart->totalprice];
-                array_push($orders, $object);
-                // array_push($orders, $cart);
-            }
-        }
 
         // dd($orders);
 
@@ -130,6 +122,6 @@ class InvoiceController extends Controller
         // dd(array_search('1-pc Chicken w/ Fries Small Meal', $orders));
 
         $date_range = explode(" ", $date_from)[0] . " - " . explode(" ", $date_to)[0];
-        return view("generateinvoice", ["restoinfos" => $restaurantinformation, "daterange" => $date_range, 'orders' => $orders],);
+        return view("generateinvoice", ["restoinfos" => $restaurantinformation, "daterange" => $date_range, 'countorders' => $getorders[0]],);
     }
 }

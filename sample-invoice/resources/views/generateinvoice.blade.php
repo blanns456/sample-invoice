@@ -39,7 +39,88 @@
                     <p class="text-start"><b>Number of Successful orders</b></p>
                 </div>
                 <div class="col-md-6">
-                    <p class="text-end"><b>106</b></p>
+                    <p class="text-end"><b>{{$countorders->countorder}}</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-start"><b>Your revenue via {{$restoinfos[0]->name}}</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-end"><b>23,376.00 PHP</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-start"><b>Already recieved amount</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-end"><b>0.00 PHP</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-start"><b>Outstanding amount</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-end"><b>23,376.00 PHP</b></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row justify-content-between align-items-center mt-3">
+                <div class="col-md-6">
+                    <p class="text-start"><b>Agency Fee base</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-end"><b>35,075.00 PHP</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-start"><b>Agency Fee Percentage</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-end"><b>26.79%</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-start"><b>Total Agency Fees</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-end"><b>9,396.66 PHP</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-start"><b>Net invoice total</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-end"><b>9,396.66 PHP</b></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row justify-content-between align-items-center mt-3">
+                <div class="col-md-6">
+                    <p class="text-start"><b>Vat on agency fees and pandabox fees, if any &lpar;12.00%&rpar;</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-end"><b>1,127.71 PHP</b></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row justify-content-between align-items-center mt-3">
+                <div class="col-md-6">
+                    <p class="text-start"><b>Fees & Adjustments</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-end"><b>9,905.56 PHP</b></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row justify-content-between align-items-center mt-3">
+                <div class="col-md-6">
+                    <p class="text-start"><b>Gross invoice total</b></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-end"><b>20,429.93 PHP</b></p>
+                </div>
+            </div>
+            <div class="row justify-content-between align-items-center mt-3 border border-dark">
+                <div class="col-md-6">
+                    <p class="text-start"><b>Total Amount paid out</b></p>
+                    <p><i>Gross invoice total minus Outstanding amount</i></p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-end"><b>2,946.07 PHP</b></p>
                 </div>
             </div>
         </div>
