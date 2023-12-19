@@ -113,7 +113,7 @@ class InvoiceController extends Controller
     {
         $restaurantinformation = DB::select("SELECT * FROM `restaurants` where id = '$resid'");
         // $orders = array();
-        $getorders = DB::select("SELECT count(*) as countorder FROM `orders` where restaurant_id = '$resid'");
+        $getorders = DB::select("SELECT count(*) as countorder , sum(`grand_total`) as sumtotal FROM `orders` where restaurant_id = '$resid'");
 
 
         // dd($orders);
@@ -122,6 +122,6 @@ class InvoiceController extends Controller
         // dd(array_search('1-pc Chicken w/ Fries Small Meal', $orders));
 
         $date_range = explode(" ", $date_from)[0] . " - " . explode(" ", $date_to)[0];
-        return view("generateinvoice", ["restoinfos" => $restaurantinformation, "daterange" => $date_range, 'countorders' => $getorders[0]],);
+        return view("generateinvoice", ["restoinfos" => $restaurantinformation, "daterange" => $date_range, 'orders' => $getorders[0]],);
     }
 }

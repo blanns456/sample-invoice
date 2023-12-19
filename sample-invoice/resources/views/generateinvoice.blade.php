@@ -39,13 +39,13 @@
                     <p class="text-start"><b>Number of Successful orders</b></p>
                 </div>
                 <div class="col-md-6">
-                    <p class="text-end"><b>{{$countorders->countorder}}</b></p>
+                    <p class="text-end"><b>{{$orders->countorder}}</b></p>
                 </div>
                 <div class="col-md-6">
                     <p class="text-start"><b>Your revenue via {{$restoinfos[0]->name}}</b></p>
                 </div>
                 <div class="col-md-6">
-                    <p class="text-end"><b>23,376.00 PHP</b></p>
+                    <p class="text-end"><b>{{$orders->sumtotal}} PHP</b></p>
                 </div>
                 <div class="col-md-6">
                     <p class="text-start"><b>Already recieved amount</b></p>
@@ -57,7 +57,7 @@
                     <p class="text-start"><b>Outstanding amount</b></p>
                 </div>
                 <div class="col-md-6">
-                    <p class="text-end"><b>23,376.00 PHP</b></p>
+                    <p class="text-end"><b>{{$orders->sumtotal}} PHP</b></p>
                 </div>
             </div>
             <hr>
