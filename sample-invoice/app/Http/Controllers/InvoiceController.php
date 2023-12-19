@@ -41,7 +41,7 @@ class InvoiceController extends Controller
     {
         //
         $validate = Validator::make($request->all(), [
-            'startDate' => 'required ',
+            'startDate' => 'required',
             'endDate' => 'required',
         ]);
 
@@ -59,6 +59,8 @@ class InvoiceController extends Controller
             $invoice->date_to = $request->input('endDate');
             $invoice->date_created = Carbon::now();
             $invoice->restaurant_id = $restaurant->id;
+            $resid = $restaurant->id;
+            // $ordersinformation = DB::select("SELECT * FROM `orders` where id = '$resid'");
             $invoice->save();
         }
         return back();
